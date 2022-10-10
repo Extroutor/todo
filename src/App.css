@@ -1,0 +1,91 @@
+input {
+  outline: none;
+}
+.todo-app {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+.todo-creater {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 250px;
+  right: 100px;
+  left: 700px;
+  top: 50px;
+}
+.todo-creater .wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+.todo-input {
+  display: flex;
+  align-items: center;
+  color: black;
+  background-color: transparent;
+}
+.todo-input input {
+  padding: 10px;
+  background-color: transparent;
+  color: black;
+  width: 400px;
+  display: flex;
+  justify-content: center;
+  margin-right: 30px;
+  border: 2px solid teal;
+}
+.app-btn {
+  background-color: teal;
+  border: 0px solid teal;
+  color: white;
+  padding: 10px;
+  width: 100px;
+  cursor: pointer;
+}
+.app-btn-cancel{
+  background-color: #80001e;
+  margin-left: 10px;
+}
+.app-btn-change{
+  background-color: #8d8100;
+}
+.todo-item{
+  width: 100%;
+  display: flex;
+  padding: 15px;
+  border: 1px solid teal;
+  margin-top: 15px;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+.complete {
+  text-decoration: line-through;
+  color: #009836;
+}
+.short-text {
+  width: 75%;
+  color: #018080;
+  padding-left: 10px;
+  white-space: nowrap; /* Текст не переносится */
+  overflow: hidden; /* Обрезаем всё за пределами блока */
+  text-overflow: ellipsis; /* Добавляем многоточие */
+}
+.short-text-complete{
+  text-decoration: line-through;
+  color: #009836;
+}
+.resizer{
+  border: 2px solid teal;
+  padding: 10px 10px 30px 10px;
+  resize: horizontal;
+  overflow: auto;
+  width: 400px;
+  min-width: 300px;
+  max-width: 600px;
+  height: auto;
+}
