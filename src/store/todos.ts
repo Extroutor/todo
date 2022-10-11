@@ -1,8 +1,9 @@
 import {makeAutoObservable} from 'mobx'
 import React from "react";
+import {ITask} from "../components/models/todo";
 
 class Todos {
-    _updateData = {
+    _updateData: ITask = {
         id: null,
         title: '',
         isCompleted: false,
@@ -36,7 +37,7 @@ class Todos {
         makeAutoObservable(this,)
     }
 
-    addTask(e) {
+    addTask(e: React.SyntheticEvent<any>) {
         e.preventDefault()
         if (this._input) {
             const newTask = {
@@ -52,12 +53,12 @@ class Todos {
     }
 
     // Работает
-    removeTask(id) {
+    removeTask(id: number | null) {
         this.todoList = [...this.todoList.filter(t => t.id !== id)]
     }
 
     // Работает
-    checkTask(id) {
+    checkTask(id: number | null) {
         let newTasks = this.todoList.map(item => {
                 if (item.id === id)
                     return ({...item, isCompleted: !item.isCompleted})
@@ -67,7 +68,7 @@ class Todos {
         this.todoList = [...newTasks]
     }
 
-    changeTask(e) {
+    changeTask(e: React.SyntheticEvent<any>) {
         this._updateData = {
             id: this._updateData.id,
             title: e.currentTarget.value,
@@ -75,20 +76,26 @@ class Todos {
         }
     }
 
-    updateTask(e) {
+    updateTask(e: React.SyntheticEvent<any>) {
         e.preventDefault()
         let filterRecords = this.todoList.filter(task => task.id !== this._updateData.id)
+        // @ts-ignore
         this.todoList = [...filterRecords, this._updateData]
         this._updateData = {
             id: null,
             title: '',
             isCompleted: false,
         }
+        this.isChangeMode = false;
     }
 
     // Работает
     removeUpdating() {
-        this._updateData = {}
+        this._updateData = {
+            id: null,
+            title: '',
+            isCompleted: false,
+        }
         this.isChangeMode = false;
     }
 
@@ -97,7 +104,7 @@ class Todos {
     }
 
     //работает
-    setUpdateData(value) {
+    setUpdateData(value: ITask) {
         this._updateData = value;
         this.isChangeMode = true;
     }
@@ -106,7 +113,7 @@ class Todos {
         return this._input;
     }
 
-    setInput(value) {
+    setInput(value: string) {
         this._input = value;
     }
 
